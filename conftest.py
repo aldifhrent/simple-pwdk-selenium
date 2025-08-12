@@ -9,7 +9,7 @@ from data.config import BASE_URL, ADMIN
 def app_url(): return BASE_URL
 
 @pytest.fixture(scope="session")
-def creds(): return ADMIN  # {"email": "...", "password": "..."}
+def creds(): return ADMIN 
 
 @pytest.fixture(scope="function")
 def driver():

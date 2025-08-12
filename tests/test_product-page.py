@@ -10,7 +10,7 @@ def test_search_and_add_wireless_headphones(driver, app_url, creds):
     lp = LoginPage(driver)
     lp.visit(app_url)
     lp.login(creds["email"], creds["password"])
-    lp.wait_no_error()  # atau lp.assert_logged_in() kalau pakai versi itu
+    lp.assert_logged_in()  # atau lp.assert_logged_in() kalau pakai versi itu
 
     # 2) Search produk
     pp = ProductsPage(driver)
