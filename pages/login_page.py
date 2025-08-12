@@ -10,13 +10,13 @@ class LoginPage:
         self.base_url = base_url.rstrip("/") if base_url else None
         self.wait = WebDriverWait(driver, timeout)
 
-        # TODO: sesuaikan locator dengan AUT kamu
-        self.email_input = (By.ID, "email") 
-        self.password_input = (By.ID, "password")
+        # Locator yang sudah disesuaikan dengan AUT
+        self.email_input = (By.CSS_SELECTOR, "input[type='email']") 
+        self.password_input = (By.CSS_SELECTOR, "input[type='password']")
         self.login_button = (By.CSS_SELECTOR, "button[type='submit']")
 
-        # Indikator sesudah login sukses (ganti ke elemen yang unik di dashboard)
-        self.dashboard_indicator = (By.CSS_SELECTOR, ".dashboard, [data-test='dashboard']")
+        # Indikator sesudah login sukses - header POS System
+        self.dashboard_indicator = (By.CSS_SELECTOR, "h1.text-2xl.font-bold")
 
         # Indikator error login (toast/alert)
         self.login_error = (By.CSS_SELECTOR, ".toast-error, .alert-danger, [data-test='login-error']")
