@@ -4,22 +4,15 @@ def base_url():
     return "https://simple-pos-pwdk.netlify.app/"
 
 def credentials():
-    # Credentials login to access simple pos
-    return {
-        "email": "admin@pos.com",
-        "password": "admin"
-    }
+    return {"email": "admin@pos.com", "password": "admin"}
 
 def is_headless():
-    # True = headless mode, False = lihat browsernya
-    return True
+    return False    # set False kalau mau lihat browsernya
 
-def timestamp():
-    # Timestamp untuk nama file screenshot atau laporan
+def _ts():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
 def take_screenshot(driver, name_prefix="screenshot"):
-    # Simpan screenshot dengan timestamp
-    filename = f"{name_prefix}_{timestamp()}.png"
+    filename = f"{name_prefix}_{_ts()}.png"
     driver.save_screenshot(filename)
-    print(f"Screenshot saved: {filename}")
+    print(f"[screenshot] {filename}")
