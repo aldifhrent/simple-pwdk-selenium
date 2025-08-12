@@ -5,13 +5,13 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginPage:
-    def __init__(self, driver, base_url: str, timeout: int = 10):
+    def __init__(self, driver, base_url: None, timeout: int = 10):
         self.driver = driver
-        self.base_url = base_url
+        self.base_url = base_url.rstrip("/")
         self.wait = WebDriverWait(driver, timeout)
 
         # TODO: sesuaikan locator dengan AUT kamu
-        self.email_input = (By.ID, "email")
+        self.email_input = (By.ID, "email") 
         self.password_input = (By.ID, "password")
         self.login_button = (By.CSS_SELECTOR, "button[type='submit']")
 
