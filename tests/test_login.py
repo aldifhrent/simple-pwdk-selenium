@@ -3,6 +3,7 @@ import logging
 from pages.login_page import LoginPage
 import pytest
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 logger = logging.getLogger(__name__)
 
@@ -28,3 +29,10 @@ def test_login_invalid(driver, app_url, creds):
     # Tunggu error muncul
     error_element = lp.wait.until(EC.visibility_of_element_located(lp.login_error))
     assert error_element.is_displayed(), "Error message should be displayed for invalid login"
+    
+    # Verifikasi text error
+    error_text = error_element.text
+    expected_error = "Invalid credentials"
+    assert error_text == expected_error, f"Error message mismatch. expected={expected_error!r}, actual={error_text!r}"
+    
+    logger.info("Invalid login test passed - error message: %s", error_text)

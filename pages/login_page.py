@@ -18,8 +18,8 @@ class LoginPage:
         # Indikator sesudah login sukses - header POS System
         self.dashboard_indicator = (By.CSS_SELECTOR, "h1.text-2xl.font-bold")
 
-        # Indikator error login (toast/alert)
-        self.login_error = (By.CSS_SELECTOR, ".toast-error, .alert-danger, [data-test='login-error']")
+        # Indikator error login - Invalid credentials message
+        self.login_error = (By.CSS_SELECTOR, ".bg-red-50.border.border-red-200.text-red-600")
 
     def open(self):
         """Buka halaman login."""
