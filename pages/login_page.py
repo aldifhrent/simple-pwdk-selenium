@@ -2,37 +2,33 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+
 
 class LoginPage:
-    EMAIL     = (By.CSS_SELECTOR, "input[type='email'][placeholder='Enter your email']")
-    PASSWORD  = (By.CSS_SELECTOR, "input[type='password'][placeholder='Enter your password']")
-    LOGIN_BTN = (By.XPATH, "//button[normalize-space()='Sign In']")
-    ERROR_MSG = (By.XPATH, "//div[contains(@class,'text-red-600') and contains(normalize-space(),'Invalid credentials')]")
-    POS_HEADER = (By.XPATH, "//h1[normalize-space()='POS System']")
-
-    def __init__(self, driver, timeout: int = 10):
+    def __init__(self, driver, base_url: str, timeout: int = 10):
         self.driver = driver
+        self.base_url = base_url
         self.wait = WebDriverWait(driver, timeout)
 
-    def visit(self, url: str):
-        self.driver.get(url)
+        # TODO: sesuaikan locator dengan AUT kamu
+        self.email_input = (By.ID, "email")
+        self.password_input = (By.ID, "password")
+        self.login_button = (By.CSS_SELECTOR, "button[type='submit']")
+
+        # Indikator sesudah login sukses (ganti ke elemen yang unik di dashboard)
+        self.dashboard_indicator = (By.CSS_SELECTOR, ".dashboard, [data-test='dashboard']")
+
+        # Indikator error login (toast/alert)
+        self.login_error = (By.CSS_SELECTOR, ".toast-error, .alert-danger, [data-test='login-error']")
+
+    def open(self):
+        """Buka halaman login."""
+        self.driver.get(self.base_url)
 
     def login(self, email: str, password: str):
-        self.wait.until(EC.visibility_of_element_located(self.EMAIL)).clear()
-        self.driver.find_element(*self.EMAIL).send_keys(email)
-        self.wait.until(EC.visibility_of_element_located(self.PASSWORD)).clear()
-        self.driver.find_element(*self.PASSWORD).send_keys(password)
-        self.wait.until(EC.element_to_be_clickable(self.LOGIN_BTN)).click()
+        """Isi form login dan submit."""
+        email_el = self.wait.until(EC.visibility_of_element_located(self.email_input))
+        email_el.clear()
+        email_el.send_keys(email)
 
-    def wait_no_error(self):
-        # anggap sukses jika error tidak muncul dalam waktu tunggu
-        try:
-            self.wait.until(EC.visibility_of_element_located(self.ERROR_MSG))
-            raise AssertionError("Login gagal: 'Invalid credentials' muncul.")
-        except TimeoutException:
-            return True
-
-    def get_pos_header_text(self) -> str:
-        el = self.wait.until(EC.visibility_of_element_located(self.POS_HEADER))
-        return el.text.strip()
+        pass_el = self.wait.unti_
