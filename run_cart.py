@@ -77,8 +77,7 @@ def main():
             input("[INFO] Tekan Enter untuk menutup browser...")
 
     except (AssertionError, TimeoutException) as e:
-        driver.save_screenshot("smoke_fail.png")
-        print(f"❌ Gagal: {e}\n📸 Screenshot: smoke_fail.png")
+        print(f"❌ Gagal: {e}\n📸")
     finally:
         driver.quit()
 

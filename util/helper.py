@@ -12,7 +12,3 @@ def is_headless():
 def _ts():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
-def take_screenshot(driver, name_prefix="screenshot"):
-    filename = f"{name_prefix}_{_ts()}.png"
-    driver.save_screenshot(filename)
-    print(f"[screenshot] {filename}")
