@@ -38,7 +38,7 @@ jobs:
         run: |
           mkdir -p reports
           pytest -vv --maxfail=1 --capture=tee-sys \
-            --html=reports/report.html --self-contained-html
+            --html=reports/ci-report.html --self-contained-html
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
