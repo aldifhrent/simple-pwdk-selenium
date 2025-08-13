@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "python -m pytest tests/ -v",
-    "test:cart": "python -m pytest tests/test_cart.py -v",
+    "test:cart": "python3 -m pytest tests/test_cart.py -v",
     "test:login": "python -m pytest tests/test_cart.py::test_user_login_valid -v",
     "test:smoke": "python -m pytest tests/ -m smoke -v",
     "test:add": "python -m pytest tests/test_cart.py::test_add_item -v -s",

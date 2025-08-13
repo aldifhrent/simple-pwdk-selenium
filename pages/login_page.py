@@ -57,3 +57,11 @@ class LoginPage:
         """Get the POS header text after successful login."""
         header = self.wait.until(EC.visibility_of_element_located(self.dashboard_indicator))
         return header.text
+
+    def assert_logged_in(self, expected_header="POS System"):
+        """Pastikan login sukses dan header sesuai."""
+        self.wait_no_error()
+        actual_header = self.get_pos_header_text()
+        assert actual_header == expected_header, (
+            f"Header mismatch. expected={expected_header!r}, actual={actual_header!r}"
+        )
