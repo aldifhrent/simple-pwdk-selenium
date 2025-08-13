@@ -1,0 +1,15 @@
+# Abaikan folder reports
+reports/
+
+# Abaikan screenshot hasil test
+screenshots/
+
+# Abaikan cache pytest
+.pytest_cache/
+__pycache__/
+
+# Abaikan file sementara
+*.log
+*.tmp
+*.pyc
+.DS_Store
