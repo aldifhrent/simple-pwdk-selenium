@@ -19,18 +19,22 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Install Google Chrome (stabil & simpel)
-      - name: Setup Chrome
+      - name: Setup Google Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
 
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
 
-      - name: Run tests (headless)
+      - name: Run Selenium tests (headless)
+        env:
+          HEADLESS: true
         run: |
           mkdir -p reports
           pytest -vv --maxfail=1 --capture=tee-sys \
@@ -40,5 +44,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: selenium-report
-          path: reports/report.html
-
+          path: reports/ci-report.html

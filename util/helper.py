@@ -1,4 +1,6 @@
 from datetime import datetime
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 def base_url():
     return "https://simple-pos-pwdk.netlify.app/"
@@ -11,4 +13,3 @@ def is_headless():
 
 def _ts():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
-

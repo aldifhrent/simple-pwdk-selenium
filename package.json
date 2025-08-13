@@ -2,19 +2,16 @@
   "name": "pos-system-qa",
   "version": "1.0.0",
   "description": "Web-based POS System Quality Assurance Testing Suite",
-  "main": "index.js",
   "scripts": {
-    "test": "python -m pytest tests/ -v",
-    "test:cart": "python3 -m pytest tests/test_cart.py -v",
-    "test:login": "python -m pytest tests/test_cart.py::test_user_login_valid -v",
-    "test:smoke": "python -m pytest tests/ -m smoke -v",
-    "test:add": "python -m pytest tests/test_cart.py::test_add_item -v -s",
-    "test:remove": "python -m pytest tests/test_cart.py::test_remove_item -v -s",
-    "test:update": "python -m pytest tests/test_cart.py::test_update_quantity -v -s",
-    "test:coverage": "python -m pytest tests/ --cov=pages --cov=tests --cov-report=html --cov-report=term",
+    "test:smoke": "python -m pytest tests/ -m smoke --html=reports/smoke.html --self-contained-html -v",
+    "test:checkout": "python -m pytest tests/ -m checkout --html=reports/checkout.html --self-contained-html -v",
+    "test:login": "python -m pytest tests/ -m login --html=reports/login.html --self-contained-html -v",
+    "test:products": "python -m pytest tests/ -m products --html=reports/products.html --self-contained-html -v",
+    "test:reports": "python -m pytest tests/ -m reports --html=reports/reports.html --self-contained-html -v",
+    "test:logout": "python -m pytest tests/ -m logout --html=reports/logout.html --self-contained-html -v",
+    "test:optional": "python -m pytest tests/ -m optional -v",
     "clean": "rm -rf reports/ .pytest_cache/ __pycache__/ .coverage htmlcov/",
-    "setup": "pip install -r requirements.txt",
-    "help": "echo 'Available test commands:' && echo '  npm run test          - Run all tests (browser visible)' && echo '  npm run test:smoke     - Run smoke tests (browser visible)' && echo '  npm run test:cart      - Run all cart tests (browser visible)' && echo '  npm run test:add       - Run add item test (browser visible)' && echo '  npm run test:remove    - Run remove item test (browser visible)' && echo '  npm run test:update    - Run update quantity test (browser visible)' && echo '  npm run test:coverage  - Run with coverage report' && echo '  npm run clean          - Clean test artifacts' && echo '  npm run setup          - Install dependencies'"
+    "setup": "pip install -r requirements.txt"
   },
   "keywords": [
     "pos-system",
@@ -25,7 +22,6 @@
   ],
   "author": "QA Team",
   "license": "MIT",
-  "devDependencies": {},
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
@@ -37,5 +33,5 @@
   "bugs": {
     "url": "https://github.com/aldifhrent/fp-qa/issues"
   },
-  "homepage": "https://github.com/your-org/pos-system-qa#readme"
+  "homepage": "https://github.com/aldifhrent/fp-qa#readme"
 }

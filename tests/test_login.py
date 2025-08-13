@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 logger = logging.getLogger(__name__)
 
 @pytest.mark.smoke
+@pytest.mark.login
 def test_login_valid(driver, app_url, creds):
     lp = LoginPage(driver)
     lp.visit(app_url)
@@ -21,6 +22,8 @@ def test_login_valid(driver, app_url, creds):
     logger.info("Asserting header... expected=%r, actual=%r", expected, actual)
     assert actual == expected, f"Header mismatch. expected={expected!r}, actual={actual!r}"
 
+@pytest.mark.smoke
+@pytest.mark.login
 def test_login_invalid(driver, app_url, creds):
     lp = LoginPage(driver)
     lp.visit(app_url)

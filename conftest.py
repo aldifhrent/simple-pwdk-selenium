@@ -14,7 +14,7 @@ def creds(): return ADMIN
 @pytest.fixture(scope="function")
 def driver():
     opts = Options()
-    # opts.add_argument("--headless=new")   # COMMENT OUT UNTUK MELIHAT BROWSER
+    opts.add_argument("--headless=new")   # COMMENT OUT UNTUK MELIHAT BROWSER
     opts.add_argument("--window-size=1440,1080")
     opts.add_argument("--start-maximized")  # Browser akan full screen
     drv = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=opts)
