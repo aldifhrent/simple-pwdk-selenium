@@ -1,15 +1,19 @@
-# Abaikan folder reports
-reports/
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Abaikan screenshot hasil test
+# Pytest cache
+.pytest_cache/
+
+# Test reports & screenshots
+reports/
 screenshots/
 
-# Abaikan cache pytest
-.pytest_cache/
-__pycache__/
-
-# Abaikan file sementara
+# Logs & temp files
 *.log
 *.tmp
-*.pyc
+
+# OS-generated files
 .DS_Store
+Thumbs.db

@@ -5,10 +5,12 @@
   "scripts": {
     "test:smoke": "python -m pytest tests/ -m smoke --html=reports/smoke.html --self-contained-html -v",
     "test:checkout": "python -m pytest tests/ -m checkout --html=reports/checkout.html --self-contained-html -v",
+    "test:cart": "python -m pytest tests/ -m cart --html=reports/cart.html --self-contained-html -v",
     "test:login": "python -m pytest tests/ -m login --html=reports/login.html --self-contained-html -v",
     "test:products": "python -m pytest tests/ -m products --html=reports/products.html --self-contained-html -v",
     "test:reports": "python -m pytest tests/ -m reports --html=reports/reports.html --self-contained-html -v",
     "test:logout": "python -m pytest tests/ -m logout --html=reports/logout.html --self-contained-html -v",
+    "test:negative": "python -m pytest tests/ -m negative --html=reports/negative.html --self-contained-html -v",
     "test:optional": "python -m pytest tests/ -m optional -v",
     "clean": "rm -rf reports/ .pytest_cache/ __pycache__/ .coverage htmlcov/",
     "setup": "pip install -r requirements.txt"

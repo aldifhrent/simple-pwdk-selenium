@@ -15,11 +15,11 @@ class Sidebar:
         )))
         menu_btn.click()
 
+    def go_to_transactions(self):
+        self.click_menu("Transactions")
+
     def go_to_reports(self):
         self.click_menu("Reports")
-
-    def go_to_pos(self):
-        self.click_menu("Point of Sale")
 
     def go_to_pos(self):
         self.click_menu("Point of Sale")

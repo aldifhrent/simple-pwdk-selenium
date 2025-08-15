@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 
 @pytest.mark.smoke
 @pytest.mark.login
+@pytest.mark.positive
 def test_login_valid(driver, app_url, creds):
     lp = LoginPage(driver)
     lp.visit(app_url)
@@ -24,6 +25,7 @@ def test_login_valid(driver, app_url, creds):
 
 @pytest.mark.smoke
 @pytest.mark.login
+@pytest.mark.negative
 def test_login_invalid(driver, app_url, creds):
     lp = LoginPage(driver)
     lp.visit(app_url)
