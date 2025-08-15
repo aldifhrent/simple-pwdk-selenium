@@ -38,9 +38,9 @@ def test_product_search_with_category_filter(driver, app_url, creds):
     pp.filter_by_category(category_name)
 
     # Verifikasi produk ada
-    pp.assert_product_visible("Wireless Headphones", folder="screenshots/pos")
+    pp.assert_product_visible("Wireless Headphones")
 
-    take_screenshot(driver, "product_search_filter_electronics")
+    take_screenshot(driver, "product_search_filter_electronics", folder="screenshots/pos")
 
 @pytest.mark.products
 @pytest.mark.negative

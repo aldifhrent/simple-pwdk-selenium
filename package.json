@@ -3,16 +3,20 @@
   "version": "1.0.0",
   "description": "Web-based POS System Quality Assurance Testing Suite",
   "scripts": {
-    "test:smoke": "python -m pytest tests/ -m smoke --html=reports/smoke.html --self-contained-html -v",
-    "test:checkout": "python -m pytest tests/ -m checkout --html=reports/checkout.html --self-contained-html -v",
-    "test:cart": "python -m pytest tests/ -m cart --html=reports/cart.html --self-contained-html -v",
-    "test:login": "python -m pytest tests/ -m login --html=reports/login.html --self-contained-html -v",
-    "test:products": "python -m pytest tests/ -m products --html=reports/products.html --self-contained-html -v",
-    "test:reports": "python -m pytest tests/ -m reports --html=reports/reports.html --self-contained-html -v",
-    "test:logout": "python -m pytest tests/ -m logout --html=reports/logout.html --self-contained-html -v",
-    "test:negative": "python -m pytest tests/ -m negative --html=reports/negative.html --self-contained-html -v",
-    "test:optional": "python -m pytest tests/ -m optional -v",
-    "clean": "rm -rf reports/ .pytest_cache/ __pycache__/ .coverage htmlcov/",
+    "test:base": "pytest tests/ --self-contained-html -v",
+    
+    "test:all": "npm run test:base -- --html=reports/all.html",
+    "test:smoke": "npm run test:base -- -m smoke --html=reports/smoke.html",
+    "test:checkout": "npm run test:base -- -m checkout --html=reports/checkout.html",
+    "test:cart": "npm run test:base -- -m cart --html=reports/cart.html",
+    "test:login": "npm run test:base -- -m login --html=reports/login.html",
+    "test:products": "npm run test:base -- -m products --html=reports/products.html",
+    "test:reports": "npm run test:base -- -m reports --html=reports/reports.html",
+    "test:logout": "npm run test:base -- -m logout --html=reports/logout.html",
+    "test:negative": "npm run test:base -- -m negative --html=reports/negative.html",
+    "test:optional": "npm run test:base -- -m optional",
+
+    "clean": "rimraf reports .pytest_cache __pycache__ .coverage htmlcov",
     "setup": "pip install -r requirements.txt"
   },
   "keywords": [
@@ -35,5 +39,8 @@
   "bugs": {
     "url": "https://github.com/aldifhrent/fp-qa/issues"
   },
-  "homepage": "https://github.com/aldifhrent/fp-qa#readme"
+  "homepage": "https://github.com/aldifhrent/fp-qa#readme",
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  }
 }
