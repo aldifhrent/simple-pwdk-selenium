@@ -1,12 +1,10 @@
 {
   "name": "pos-system-qa",
   "version": "1.0.0",
-  "description": "Web-based POS System Quality Assurance Testing Suite",
+  "description": "Web-based POS System QA",
   "scripts": {
     "test:base": "pytest tests/ --self-contained-html -v",
-    
     "test:all": "npm run test:base -- --html=reports/all.html",
-    "test:smoke": "npm run test:base -- -m smoke --html=reports/smoke.html",
     "test:checkout": "npm run test:base -- -m checkout --html=reports/checkout.html",
     "test:cart": "npm run test:base -- -m cart --html=reports/cart.html",
     "test:login": "npm run test:base -- -m login --html=reports/login.html",
@@ -15,8 +13,6 @@
     "test:logout": "npm run test:base -- -m logout --html=reports/logout.html",
     "test:negative": "npm run test:base -- -m negative --html=reports/negative.html",
     "test:optional": "npm run test:base -- -m optional",
-
-    "clean": "rimraf reports .pytest_cache __pycache__ .coverage htmlcov",
     "setup": "pip install -r requirements.txt"
   },
   "keywords": [
@@ -26,7 +22,7 @@
     "pytest",
     "web-automation"
   ],
-  "author": "QA Team",
+  "author": "Aldi Ahmad Fahrizi Ilmawan",
   "license": "MIT",
   "engines": {
     "node": ">=14.0.0",
@@ -44,3 +40,4 @@
     "rimraf": "^5.0.5"
   }
 }
+

@@ -16,7 +16,7 @@ class ReportPage:
     FILTER_DROPDOWN = (By.TAG_NAME, "select")
     FILTER_OPTIONS = (By.TAG_NAME, "option")
 
-    SUMMARY_CARDS = (By.CSS_SELECTOR, ".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div")
+    SUMMARY_CARDS = (By.CSS_SELECTOR, "div.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4.gap-6 > div")
 
     # --- Actions ---
     def wait_for_page(self):
@@ -57,23 +57,24 @@ class ReportPage:
         return result
 
     def get_daily_sales(self):
-        dates = [d.text for d in self.driver.find_elements(
-            By.XPATH, "//h3[normalize-space()='Daily Sales']/following-sibling::div//span[@class='text-sm text-gray-600']")]
-        values = [v.text for v in self.driver.find_elements(
-            By.XPATH, "//h3[normalize-space()='Daily Sales']/following-sibling::div//span[@class='text-sm font-medium']")]
-        sales = list(zip(dates, values))
-        if not sales:
-            logger.warning("⚠️ Tidak ada data Daily Sales.")
-        return sales
+        container = self.driver.find_element(By.XPATH, "//h3[normalize-space()='Daily Sales']/..")
+        empty_text = container.find_elements(By.XPATH, ".//p[contains(text(),'No sales data')]")
+        if empty_text:
+            logger.info("ℹ️ Daily Sales kosong")
+            return []
+        dates = [d.text for d in container.find_elements(By.CSS_SELECTOR, "span.text-sm.text-gray-600")]
+        values = [v.text for v in container.find_elements(By.CSS_SELECTOR, "span.text-sm.font-medium")]
+        return list(zip(dates, values))
+
 
     def get_top_products(self):
-        names = [n.text for n in self.driver.find_elements(
-            By.XPATH, "//h3[normalize-space()='Top Products']/following-sibling::div//p[@class='font-medium text-gray-900']")]
-        solds = [s.text for s in self.driver.find_elements(
-            By.XPATH, "//h3[normalize-space()='Top Products']/following-sibling::div//p[@class='text-sm text-gray-500']")]
-        totals = [t.text for t in self.driver.find_elements(
-            By.XPATH, "//h3[normalize-space()='Top Products']/following-sibling::div//p[@class='font-semibold text-green-600']")]
-        products = list(zip(names, solds, totals))
-        if not products:
-            logger.warning("⚠️ Tidak ada data Top Products.")
-        return products
+        container = self.driver.find_element(By.XPATH, "//h3[normalize-space()='Top Products']/..")
+        empty_text = container.find_elements(By.XPATH, ".//p[contains(text(),'No product data')]")
+        if empty_text:
+            logger.info("ℹ️ Top Products kosong")
+            return []
+        names = [n.text for n in container.find_elements(By.CSS_SELECTOR, "p.font-medium.text-gray-900")]
+        solds = [s.text for s in container.find_elements(By.CSS_SELECTOR, "p.text-sm.text-gray-500")]
+        totals = [t.text for t in container.find_elements(By.CSS_SELECTOR, "p.font-semibold.text-green-600")]
+        return list(zip(names, solds, totals))
+

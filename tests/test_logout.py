@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By
 from util.helper import take_screenshot
 import os
 
-@pytest.mark.smoke
 @pytest.mark.logout
 def test_logout_with_screenshot(driver, app_url, creds):
     lp = LoginPage(driver)

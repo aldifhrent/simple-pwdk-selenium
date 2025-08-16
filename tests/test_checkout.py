@@ -2,7 +2,7 @@ import logging
 import pytest
 import os
 from pages.login_page import LoginPage
-from pages.pos_page import PosPage
+from pages.products_page import ProductsPage
 from util.helper import take_screenshot
 from pages.cart_page import CartPage
 logger = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ def test_checkout_with_name_and_email(driver, app_url, creds):
     lp.login(creds["email"], creds["password"])
     lp.assert_logged_in()
 
-    pp = PosPage(driver)
+    pp = ProductsPage(driver)
     cp = CartPage(driver)
     pp.search_product("Wireless Headphones")
     pp.add_to_cart("Wireless Headphones")
@@ -40,7 +40,7 @@ def test_checkout_with_empty_fields(driver, app_url, creds):
     lp.login(creds["email"], creds["password"])
     lp.assert_logged_in()
 
-    pp = PosPage(driver)
+    pp = ProductsPage(driver)
     cp = CartPage(driver)
     pp.search_product("Wireless Headphones")
     pp.add_to_cart("Wireless Headphones")
@@ -65,7 +65,7 @@ def test_checkout_with_name_only(driver, app_url, creds):
     lp.login(creds["email"], creds["password"])
     lp.assert_logged_in()
 
-    pp = PosPage(driver)
+    pp = ProductsPage(driver)
     cp = CartPage(driver)
     pp.search_product("Wireless Headphones")
     pp.add_to_cart("Wireless Headphones")
@@ -90,7 +90,7 @@ def test_checkout_with_email_only(driver, app_url, creds):
     lp.login(creds["email"], creds["password"])
     lp.assert_logged_in()
 
-    pp = PosPage(driver)
+    pp = ProductsPage(driver)
     cp = CartPage(driver)
     pp.search_product("Wireless Headphones")    
     pp.add_to_cart("Wireless Headphones")
