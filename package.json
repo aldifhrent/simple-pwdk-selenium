@@ -12,15 +12,12 @@
     "test:reports": "npm run test:base -- -m reports --html=reports/reports.html",
     "test:logout": "npm run test:base -- -m logout --html=reports/logout.html",
     "test:negative": "npm run test:base -- -m negative --html=reports/negative.html",
-    "test:optional": "npm run test:base -- -m optional",
     "setup": "pip install -r requirements.txt"
   },
   "keywords": [
-    "pos-system",
     "qa-testing",
     "selenium",
-    "pytest",
-    "web-automation"
+    "pytest"
   ],
   "author": "Aldi Ahmad Fahrizi Ilmawan",
   "license": "MIT",
@@ -35,7 +32,6 @@
   "bugs": {
     "url": "https://github.com/aldifhrent/fp-qa/issues"
   },
-  "homepage": "https://github.com/aldifhrent/fp-qa#readme",
   "devDependencies": {
     "rimraf": "^5.0.5"
   }

@@ -33,8 +33,6 @@ def login_and_pos(driver, app_url, creds):
         pytest.param("Coff", "Coffee Beans", id="partial-coff"),
     ],
 )
-@pytest.mark.products
-@pytest.mark.positive
 def test_product_search_and_selection_positive(login_and_pos, search_name, expected_product):
     pp = login_and_pos
     logger.info(f"Searching for product: {search_name}")

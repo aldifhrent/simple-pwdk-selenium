@@ -20,19 +20,18 @@ def creds():
 
 @pytest.fixture(scope="function")
 def driver():
-    """Fixture WebDriver yang cepat & aman untuk macOS."""
     opts = Options()
 
     # Jalankan headless jika tidak perlu lihat browser
     opts.add_argument("--headless=new")  # Comment kalau mau lihat browser
     opts.add_argument("--window-size=1440,1080")
-
+    opts.add_experimental_option("excludeSwitches", ["enable-logging"])
     # Optimisasi startup
     opts.add_argument("--disable-extensions")
     opts.add_argument("--disable-gpu")
+    opts.add_argument("--log-level=3") 
     opts.add_argument("--no-sandbox")
     opts.add_argument("--disable-dev-shm-usage")
-    # Hapus --start-maximized biar startup lebih cepat di headless
     
     drv = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=opts)
     drv.implicitly_wait(5)

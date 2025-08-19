@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from util.helper import click_button_by_text
+from util.sidebar import Sidebar
 import re
 
 logger = logging.getLogger(__name__)
@@ -191,3 +191,41 @@ class CartPage:
         match = re.search(r"TXN-\d{8}-\d{6}", alert_text)
         txid = match.group(0) if match else None
         return alert_text, txid
+    
+    def check_transactions_on_transaction_page(self, txid=None):
+        """Cek apakah transaksi (by TXID) muncul di halaman Transactions."""
+        try:
+            # Pakai helper sidebar
+            sidebar = Sidebar(self.driver)
+            sidebar.go_to_transactions()
+
+            # Tunggu heading Transactions muncul
+            self.wait.until(
+                EC.visibility_of_element_located((By.XPATH, "//h1[contains(., 'Transactions')]"))
+            )
+
+            # Tunggu tabel muncul
+            self.wait.until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table tbody tr"))
+            )
+
+            rows = self.driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+            if not rows:
+                logger.warning("[check_transactions_on_transaction_page] ⚠️ Tidak ada transaksi di tabel")
+                return False
+
+            if txid:
+                for row in rows:
+                    if txid in row.text:
+                        logger.info(f"[check_transactions_on_transaction_page] ✅ Transaksi {txid} ditemukan di tabel")
+                        return True
+                logger.error(f"[check_transactions_on_transaction_page] ❌ Transaksi {txid} TIDAK ditemukan")
+                return False
+            else:
+                last_row = rows[-1].text
+                logger.info(f"[check_transactions_on_transaction_page] ✅ Transaksi terakhir: {last_row}")
+            return True
+
+        except Exception as e:
+            logger.error(f"[check_transactions_on_transaction_page] ❌ Error: {e}")
+            return False

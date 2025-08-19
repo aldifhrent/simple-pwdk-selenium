@@ -21,13 +21,6 @@ class LoginPage:
         # Indikator error login (utama)
         self.login_error = (By.CSS_SELECTOR, ".bg-red-50.border.border-red-200.text-red-600")
 
-        # Beberapa locator alternatif untuk berjaga-jaga (opsional)
-        self._error_locators_fallback = [
-            (By.CSS_SELECTOR, ".text-red-600"),
-            (By.CSS_SELECTOR, ".alert-danger, .toast-error, .error, .error-message"),
-            (By.XPATH, "//*[contains(@class,'text-red')][contains(., 'Invalid')]"),
-        ]
-
     # -------------------------
     # Navigation
     # -------------------------
