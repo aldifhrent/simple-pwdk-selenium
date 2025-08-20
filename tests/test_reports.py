@@ -3,7 +3,6 @@ from pages.login_page import LoginPage
 from pages.report_page import ReportPage
 from util.sidebar import Sidebar
 
-
 @pytest.mark.reports
 def test_reports_page_header_and_filters(driver, app_url, creds):
     """Positive test: login, header, dan filter muncul sesuai requirement"""

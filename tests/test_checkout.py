@@ -22,7 +22,6 @@ checkout_cases = [
 
 payment_methods = ["Cash", "Card", "Digital"]
 
-
 # =======================
 # TEST
 # =======================

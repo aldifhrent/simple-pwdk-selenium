@@ -46,9 +46,7 @@ Karena itu, test ini dibuat **opsional** (`@pytest.mark.optional`) dan tidak mem
 
 ---
 
-
 - Login
-
 
 Valid Login (Automation) ✅
 
@@ -119,7 +117,3 @@ Logout from POS system (Automation) ✅
 Verify user redirected to login page (Automation) ✅
 
 Try accessing POS page after logout → should redirect to login (Automation – Negative) ✅
-
-
-
-
